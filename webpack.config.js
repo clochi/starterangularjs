@@ -1,7 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
-const libs = ['jquery.min.js', 'angular.min.js', 'angular-route.min.js']
+const libs = ['angular.min.js', 'angular-route.min.js', 'jquery.min.js',]
 
 function listOfLibs(src){
   /*  @src:string recibe la ruta del tipo 'src/'' */
@@ -10,13 +10,13 @@ function listOfLibs(src){
 
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, 'src/app.js'),
+    bundle: path.resolve(__dirname, 'src/js/app.js'),
     vendor: listOfLibs('src/vendors/')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: './dist'
+    filename: '[name].js'/*,
+    publicPath: './dist'*/
   },
   module: {
     rules: [
