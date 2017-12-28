@@ -35,12 +35,12 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           //['style-loader', 'css-loader']
-          //fallback: 'style-loader',
-          use: ["css-loader", "stylus-loader"]
+          fallback: 'style-loader',
+          use: "css-loader"
         })
       },
       {
-        test: /\styl$/,
+        test: /\.styl$/,
         use: ExtractTextPlugin.extract({
           use: [
             "css-loader",
@@ -89,7 +89,7 @@ module.exports = {
       filename: 'vendor.js',
       minChunks: Infinity
     }),
-    new ExtractTextPlugin("css/[name].css"),
+    new ExtractTextPlugin("[name].[hash].css"),
     //  title, ngApp, ngCtrl son las variables que se se sustituyen en el index
     new HtmlWebpackPlugin({
       title: 'Nombre de App', //<title>
