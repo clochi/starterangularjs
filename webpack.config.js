@@ -2,7 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const libs = ['angular.min.js', 'angular-route.min.js', 'jquery.min.js',]
+const libs = ['jquery.min.js', 'angular.min.js', 'angular-route.min.js', 'angular-animate.min.js', 'angular-aria.min.js', 'angular-material.min.js', 'angular-material.min.css']
 
 function listOfLibs(src){
   /*  @src:string recibe la ruta del tipo 'src/'' */
