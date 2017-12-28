@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="webpackStarter" ng-controller="main as cg">
+<html lang="es" ng-app="<%= htmlWebpackPlugin.options.ngApp %>" ng-controller="<%= htmlWebpackPlugin.options.ngCtrl %> as cg">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<meta name="Author" content="">
+	<meta name="CRZ" content="">
 	<meta name="keywords" content="">
-	<title></title>
+	<title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
  <!--[if lt IE 8]>
@@ -13,8 +13,6 @@
 <![endif]-->
 <h1 ng-click="cg.changeName()">{{cg.nombre}}</h1>
 
-<script type="text/javascript" src="http://localhost:8080/vendor.js"></script>
-<script type="text/javascript" src="http://localhost:8080/bundle.js"></script>
 
 <!-- ANALITYCS AQUÍ-->
 

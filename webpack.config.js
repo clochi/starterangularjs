@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const libs = ['angular.min.js', 'angular-route.min.js', 'jquery.min.js',]
 
@@ -88,6 +89,17 @@ module.exports = {
       filename: 'vendor.js',
       minChunks: Infinity
     }),
-    new ExtractTextPlugin("css/[name].css")
-  ]
+    new ExtractTextPlugin("css/[name].css"),
+    //  title, ngApp, ngCtrl son las variables que se se sustituyen en el index
+    new HtmlWebpackPlugin({
+      title: 'Nombre de App', //<title>
+      template: 'src/index.html',
+      ngApp: 'webpackStarter', //ng-app="montegoPrueba"
+      ngCtrl: 'main' //ng-controller="main" Controller general en el index
+    })
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, "src"),
+    compress: true
+  }
 }
