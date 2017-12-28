@@ -3,7 +3,6 @@
 class main{
   constructor($rootScope, $scope){
     this.nombre = "Mi nombre es Claudio";
-    debugger
   }
   changeName(){
     this.nombre = "Cambióooooo!!!!!"
