@@ -2,10 +2,10 @@
 //  Controller usando class
 class main{
   constructor($rootScope, $scope){
-    this.nombre = "Mi nombre es Claudio";
+    this.nombre = "Click aquí para cambiar estado";
   }
   changeName(){
-    this.nombre = "Cambióooooo!!!!!"
+    this.nombre = "Como puedes ver, el estado cambió ;)"
   }
 
 }

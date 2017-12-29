@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="<%= htmlWebpackPlugin.options.ngApp %>" ng-controller="<%= htmlWebpackPlugin.options.ngCtrl %> as cg">
+<html lang="es" ng-app="webpackStarter" ng-controller="main as cg">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="CRZ" content="">
 	<meta name="keywords" content="">
-	<title><%= htmlWebpackPlugin.options.title %></title>
+	<title>Titulo del proyecto</title>
 </head>
 <body>
  <!--[if lt IE 8]>
     <p class="browserupgrade">Estas usando un navegador <strong>viejo</strong>. Por favor <a href="http://browsehappy.com/">actualíce su navegador</a> para una mejór experiencia.</p>
 <![endif]-->
 <h1 ng-click="cg.changeName()">{{cg.nombre}}</h1>
-<md-divider></md-divider>
-
+<!-- Esto es otro comentario :) -->
 <md-input-container>
-  <label>Probando Angular Material</label>
+  <label>Material</label>
   <input type="text" ng-model="color" required md-maxlength="10">
 </md-input-container>
 
