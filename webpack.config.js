@@ -2,17 +2,18 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const libs = ['jquery.min.js', 'angular.min.js', 'angular-route.min.js', 'angular-animate.min.js', 'angular-aria.min.js', 'angular-material.min.js', 'angular-material.min.css']
+//const libs = ['jquery.min.js', 'angular.min.js', 'angular-route.min.js', 'angular-animate.min.js', 'angular-aria.min.js', 'angular-material.min.js', 'angular-material.min.css']
 
+/*  @src:string recibe la ruta del tipo 'src/''
 function listOfLibs(src){
-  /*  @src:string recibe la ruta del tipo 'src/'' */
+
   return libs.map((lib) => path.resolve(__dirname, src+lib));
-}
+}*/
 
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, 'src/js/app.js'),
-    vendor: listOfLibs('src/vendors/')
+    bundle: path.resolve(__dirname, 'src/js/app.js')/*,
+    vendor: listOfLibs('src/vendors/')*/
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -99,11 +100,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
+    /*new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.js',
       minChunks: Infinity
-    }),
+    }),*/
     new ExtractTextPlugin("[name].[hash].css"),
     //  title, ngApp, ngCtrl son las variables que se se sustituyen en el index
     new HtmlWebpackPlugin({

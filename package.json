@@ -27,5 +27,13 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.0.9",
+    "angular-route": "^1.5.8",
+    "jquery": "^3.2.1"
   }
 }
