@@ -16,12 +16,20 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|dist|vendors)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['babel-preset-env']
+        use:[
+          /*{
+            loader: 'uglify-loader',
+            options: {
+              mangle: false
+            }
+          },*/
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['babel-preset-env']
+            }
           }
-        }
+        ]
       },
       {
         test: /\.css$/,

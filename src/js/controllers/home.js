@@ -8,7 +8,7 @@ function home($rootScope, $scope, usuariosService){
   $(document).ready(function() {
 
         $('#calendar').fullCalendar({
-            //locale: 'es'
+            locale: 'es'
         });
 
     });

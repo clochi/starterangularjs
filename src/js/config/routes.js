@@ -15,7 +15,7 @@ function configRoutes($routeProvider){
     .when('/home', {
       controller: 'home',
       controllerAs: 'home',
-      templateUrl: 'views/app/home.html',
+      template: require('../../views/app/home.html'),
       resolve: {auth: function(AUTH){
         return AUTH.check();
       }}
