@@ -105,6 +105,9 @@ module.exports = {
       filename: 'vendor.js',
       minChunks: Infinity
     }),*/
+    new webpack.ProvidePlugin({
+      $: 'jQuery'
+    }),
     new ExtractTextPlugin("[name].[hash].css"),
     //  title, ngApp, ngCtrl son las variables que se se sustituyen en el index
     new HtmlWebpackPlugin({

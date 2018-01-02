@@ -102,7 +102,7 @@ class main{
       };
 
       //FIN FUNCIONES GENERALES DE LA APP
-
+      var vm = this;
       $rootScope.$on('updateSidenav', function(e, menu){
         vm.listaMenu = menu;
       });

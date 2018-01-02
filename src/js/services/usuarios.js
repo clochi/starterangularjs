@@ -8,6 +8,11 @@ function usuariosService($http, $rootScope, HOST){
   let timeout = 10000;
 
   this.login = function(datosUsuario){
-    $http.post('http://www.fibraconsultores.com:8010/authenticate', datosUsuario, {timeout: timeout})
+    return $http.post('http://www.fibraconsultores.com:8010/authenticate', datosUsuario, {timeout: timeout})
+  }
+
+  this.getUser = function(idUsuario){
+    return $http.get(`${url}usuario/${idUsuario}`, {timeout: timeout})
+    //return $http.get(url + 'usuario/' + idUsuario, {timeout: timeout})
   }
 }

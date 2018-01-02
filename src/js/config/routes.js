@@ -12,14 +12,14 @@ function configRoutes($routeProvider){
       template: require('../../views/login/login.html')
       //templateUrl: 'views/login/login.html'
     })
-    /*.when('/home', {
+    .when('/home', {
       controller: 'home',
       controllerAs: 'home',
       templateUrl: 'views/app/home.html',
       resolve: {auth: function(AUTH){
         return AUTH.check();
       }}
-    })*/
+    })
     .otherwise({redirectTo: '/'});
 }
 

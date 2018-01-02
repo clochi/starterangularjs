@@ -30,19 +30,20 @@ function login($rootScope, $scope, $location, usuariosService){ //, usuariosServ
         });
 
       var vm = this;
-      vm.datosLogin = {};
-      vm.login = function(){
+      vm.login = {};
+      vm.logear = function(){
         var spinner = $('.spinnerGral');
   			spinner.fadeIn(300);
-  			usuariosService.login(vm.datosLogin, function(res){
-          if(res.status >= 200 & res.status < 400){
+
+        usuariosService.login(vm.login)
+          .then(function(res){
             if(res.data.validation){
               localStorage.token = res.data.token;
-    					var token = localStorage.token.split('.')[1];
-    					var infoT = base64Decode(token);
+              var token = localStorage.token.split('.')[1];
+              var infoT = base64Decode(token);
               $rootScope.usuario = {};
-    					$rootScope.usuario.id = infoT.id;
-    					$rootScope.usuario.idCategoria = infoT.idCategoria;
+              $rootScope.usuario.id = infoT.id;
+              $rootScope.usuario.idCategoria = infoT.idCategoria;
               $rootScope.usuario.nombre = infoT.nombre;
               if($rootScope.usuario.idCategoria === 1){
                 $location.url('/home');
@@ -52,13 +53,16 @@ function login($rootScope, $scope, $location, usuariosService){ //, usuariosServ
             }else{
               $rootScope.tools.alerta('Usuario inexistente', res.data.message);
             }
-          }else if(res.status >= 500){
-            $rootScope.tools.alerta('Error del servidor', res.data.message);
-          }else{
-            $rootScope.tools.alerta('Error en base de datos', res.data.message);
-          }
-  				spinner.fadeOut(300);
-  			});
+            spinner.fadeOut(300);
+          }, function(res){
+            if(res.status >= 500){
+              $rootScope.tools.alerta('Error del servidor', res.data.message);
+            }else{
+              $rootScope.tools.alerta('Error en base de datos', res.data.message);
+            }
+            spinner.fadeOut(300);
+          })
+
       };
 
       function tokenCheck(){
@@ -81,15 +85,12 @@ function login($rootScope, $scope, $location, usuariosService){ //, usuariosServ
 
       function isAuthorized(usuario){
         return new Promise(function(resolve, reject){
-          usuariosService.getOne(usuario.id, function(res){
-            if(res.status >= 200 & res.status < 400){
+          usuariosService.getUser(usuario.id)
+            .then(function(res){
               resolve({status: 200});
-            }else if(res.status >= 500){
-              reject({status: 500});
-            }else{
-              reject({status: 400});
-            }
-          });
+            }, function(res){
+              res.status >= 500 ? reject({status: 500}) : reject({status: 400});
+            })
         });
       }
 

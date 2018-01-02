@@ -1,0 +1,19 @@
+<div layout="row" layout-align="center" layout-margin layout-xs="column">
+	<div flex-gt-xs="33" flex>
+		<pedidos></pedidos>
+	</div>
+	<div flex-gt-xs="33" flex>
+		<revendedores></revendedores>
+	</div>
+	<div flex-gt-xs="33" flex>
+		<combos></combos>
+	</div>
+
+</div>
+
+<br>
+
+<div id="container" ng-if="home.pedidos.length > 0"></div>
+<div ng-if="home.pedidos.length == 0" style="width: 100%; height: 200px; position: relative;">
+	<span style="position: absolute; left: 50%; top: 50%; transform:translate(-50%, -50%); font-size: 1.2em">No hay datos para generar grafico estadistico</span>
+</div>
