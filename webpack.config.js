@@ -2,23 +2,14 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-//const libs = ['jquery.min.js', 'angular.min.js', 'angular-route.min.js', 'angular-animate.min.js', 'angular-aria.min.js', 'angular-material.min.js', 'angular-material.min.css']
-
-/*  @src:string recibe la ruta del tipo 'src/''
-function listOfLibs(src){
-
-  return libs.map((lib) => path.resolve(__dirname, src+lib));
-}*/
 
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, 'src/js/app.js')/*,
-    vendor: listOfLibs('src/vendors/')*/
+    bundle: path.resolve(__dirname, 'src/js/app.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js'/*,
-    publicPath: './dist'*/
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
@@ -35,7 +26,6 @@ module.exports = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          //['style-loader', 'css-loader']
           fallback: 'style-loader',
           use: "css-loader"
         })
@@ -44,7 +34,6 @@ module.exports = {
         test: /\.styl$/,
         use: ExtractTextPlugin.extract({
           use: [
-            //"css-loader",
             {
               loader: 'css-loader',
               options: {
@@ -100,21 +89,14 @@ module.exports = {
     ]
   },
   plugins: [
-    /*new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.js',
-      minChunks: Infinity
-    }),*/
     new webpack.ProvidePlugin({
       $: 'jQuery'
     }),
     new ExtractTextPlugin("[name].[hash].css"),
-    //  title, ngApp, ngCtrl son las variables que se se sustituyen en el index
+    //  title, es la variable que se se sustituyen en el index
     new HtmlWebpackPlugin({
       title: 'Nombre de App', //<title>
-      template: 'src/index.html',
-      ngApp: 'webpackStarter', //ng-app="montegoPrueba"
-      ngCtrl: 'main' //ng-controller="main" Controller general en el index
+      template: 'src/index.html'
     })
   ],
   devServer: {
