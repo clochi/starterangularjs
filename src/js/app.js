@@ -1,10 +1,12 @@
-//const $ = require('jquery');
 const angular = require('angular');
 const angularAnimate = require('angular-animate');
 const angularAria = require('angular-aria');
 const angularMaterial = require('angular-material');
 const angularRoute = require('angular-route');
+const moment = require('moment');
+const fullCalendar = require('fullcalendar');
 require('angular-material/angular-material.min.css');
+require('fullcalendar/dist/fullcalendar.min.css');
 require('../css/estilo.styl');
 
 angular.module('webpackStarter', ['ngRoute', 'ngMaterial']);

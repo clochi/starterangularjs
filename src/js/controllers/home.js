@@ -5,4 +5,11 @@ export default ngModule => {
 
 function home($rootScope, $scope, usuariosService){
   var vm = this;
+  $(document).ready(function() {
+
+        $('#calendar').fullCalendar({
+            //locale: 'es'
+        });
+
+    });
 }

@@ -90,7 +90,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      $: 'jQuery'
+      $: 'jquery'
     }),
     new ExtractTextPlugin("[name].[hash].css"),
     //  title, es la variable que se se sustituyen en el index
