@@ -7,16 +7,82 @@
 	<meta name="keywords" content="">
 	<title>Titulo del proyecto</title>
 </head>
-<body>
+<body layout="column">
  <!--[if lt IE 8]>
     <p class="browserupgrade">Estas usando un navegador <strong>viejo</strong>. Por favor <a href="http://browsehappy.com/">actualíce su navegador</a> para una mejór experiencia.</p>
 <![endif]-->
-<h1 ng-click="cg.changeName()">{{cg.nombre}}</h1>
-<!-- Esto es otro comentario :) -->
-<md-input-container>
-  <label>Material</label>
-  <input type="text" ng-model="color" required md-maxlength="10">
-</md-input-container>
+<div class="spinnerGral">
+	<md-progress-circular md-mode="indeterminate" md-diameter="120"></md-progress-circular>
+</div>
+<md-toolbar ng-if="cg.app.isLoginScreen()" layout="row" class="md-toolbar-tools"  ng-cloak>
+	<h1>Nombre Proyecto</h1>
+	<span flex></span>
+	<ul class="lista-menu">
+		<li>
+			<md-button class="md-icon-button">
+				<i class="material-icons">notifications</i>
+			</md-button>
+		</li>
+		<li>
+			<md-menu>
+			<md-button class="md-icon-button" ng-click="cg.app.abrirMenuUser($mdOpenMenu, $event)">
+				<i class="material-icons">person_pin</i>
+			</md-button>
+				<md-menu-content width="3">
+						<md-menu-item>
+							<md-button ng-click="">
+						<i class="material-icons" style="vertical-align: middle">person</i>
+								{{usuario.nombre}}
+							</md-button>
+						</md-menu-item>
+						<md-menu-item>
+							<md-button ng-click="cg.app.passChange()">
+								<i class="material-icons" style="vertical-align: middle">security</i>
+								Contraseña
+							</md-button>
+						</md-menu-item>
+						<!--<md-menu-item ng-if="!(usuario.categoria >= 2)">
+							<md-button ng-click="cg.app.redirection()">
+								<i class="material-icons" style="vertical-align: middle">chrome_reader_mode</i>
+								Manual
+							</md-button>
+						</md-menu-item>-->
+						<md-menu-divider></md-menu-divider>
+						<md-menu-item>
+							<md-button ng-click="cg.app.logout()">
+								<i class="material-icons" style="vertical-align: middle">cancel</i>
+								Cerrar sesión
+							</md-button>
+						</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+		</li>
+		<li>
+			<md-button class="md-icon-button btn-menu" aria-label="Menu" ng-click="cg.app.abrirMenu()">
+				<i class="material-icons">menu</i>
+			</md-button>
+		</li>
+	</ul>
+</md-toolbar>
+
+	<div flex layout="row" layout-fill>
+		<md-sidenav ng-if="cg.app.isLoginScreen()" md-is-locked-open="$mdMedia('min-width: 1200px')" md-component-id="left" class="md-whiteframe-z2" md-swipe-left="onSwipeLeft()" ng-cloak> <!--ng-if="cg.app.isLoginScreen()"-->
+			<div class="menu-logo">
+				<h3>Ingresar logo aquí</h3><!--<img ng-src="img/logo-montego.png" alt="">-->
+			</div>
+			<md-list ng-repeat="item in cg.listaMenu" class="menu-item-cont">
+				<a ng-if="item.seccion" href="#{{item.link}}">
+					<md-list-item ng-class="{listItemActive: cg.app.navActive(item.link)}">
+						<i class="material-icons">{{item.icono}}</i>
+						<span>{{item.seccion}} </span>
+					</md-list-item>
+				</a>
+			</md-list>
+		</md-sidenav>
+		<md-content flex id="content" ng-class="{paddingContent: cg.app.isLoginScreen()}">
+			<div ng-view layout-fill></div>
+		</md-content>
+	</div>
 
 <!-- ANALITYCS AQUÍ-->
 
