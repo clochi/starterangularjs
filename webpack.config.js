@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -97,6 +98,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new UglifyJsPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery'
     }),
