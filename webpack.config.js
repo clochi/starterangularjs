@@ -18,12 +18,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|dist|vendors)/,
         use:[
-          /*{
-            loader: 'uglify-loader',
-            options: {
-              mangle: false
-            }
-          },*/
           {
             loader: 'babel-loader',
             options: {
@@ -73,11 +67,20 @@ module.exports = {
         }]
       },
       {
-        test: /\.(jpg|png|gif|woff|eot|ttf|svg)$/,
+        test: /\.(jpg|png|gif|woff|eot|ttf)$/,
         use: {
           loader: 'url-loader',
           options: {
-            limit: 200000,
+            limit: 5000,
+          }
+        }
+      },
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'img/[name].[ext]'
           }
         }
       },
@@ -98,7 +101,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      exclude: /(node_modules|dist)/,
+      parallel: true,
+      uglifyOptions: {
+        mangle: false,
+        compress: true
+      }
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery'
     }),

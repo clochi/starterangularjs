@@ -2,10 +2,10 @@
 //  Controller usando function
 
 export default (ngModule) => {
-  ngModule.controller('main', ['$rootScope', '$scope', '$mdSidenav', '$location', '$mdDialog', main]);
+  ngModule.controller('main', ['$rootScope', '$scope', '$mdSidenav', '$location', '$mdDialog', '$mdToast', main]);
 }
 class main{
-  constructor($rootScope, $scope, $mdSidenav, $location, $mdDialog){
+  constructor($rootScope, $scope, $mdSidenav, $location, $mdDialog, $mdToast){
     this.nombre = "Click aquí para cambiar estado";
 
       //FUNCIONES GENERALES DE LA APP
@@ -30,7 +30,7 @@ class main{
 			    $mdDialog.show({
 			      controller: passChange,
 			      controllerAs: 'pc',
-			      templateUrl: 'views/templates/passchange.html',
+			      template: require('../../views/templates/passchange.html'),
 			      parent: angular.element(document.body),
 			      targetEvent: ev,
 			      clickOutsideToClose:true,
@@ -56,6 +56,40 @@ class main{
   			  	if(typeof callbk === 'function'){
   			  		callbk();
   			  	}
+  			},
+        notificar: function(msg, action, callbk){
+
+			  	var notificacion = $mdToast.simple()
+			  		.textContent(msg)
+			  		.action(action)
+			  		.highlightAction(true)
+			  		//.highlightClass('md-accent')
+			  		.position('bottom right');
+
+		  		$mdToast.show(notificacion)
+		  		.then(function(res){
+		  			if(res == 'ok'){
+		  				callbk(true);
+		  			}
+		  		});
+
+			  },
+        confirmar: function(obj){
+  				// ** {title, message, ok, cancel}
+  				return new Promise(function(resolve, reject){
+  					var confirm = $mdDialog.confirm()
+  	              .title(obj.title)
+  	              .textContent(obj.message)
+  	              .ok(obj.ok)
+  	              .cancel(obj.cancel);
+
+  	        $mdDialog.show(confirm).then(function() {
+  	          resolve(true);
+  	        }, function(){
+  						reject(false);
+  					});
+  				})
+
   			},
         checkResponse: function(res, data, callbk){
           //{res: es el objeto response de angular}
@@ -114,13 +148,16 @@ class main{
       		ctrl.enviar = function(){
       			var boton = document.getElementById('btnPassChange');
       			ctrl.btnPassChange = "ENVIANDO...";
-      			usuariosService.passChange($rootScope.usuario.id, ctrl.password, function(res){
-              if(res.status >= 200 & res.status < 400){
+      			usuariosService.passChange($rootScope.usuario.id, ctrl.password)
+              .then(function(res){
                 ctrl.btnPassChange = "ENVIADO";
       					boton.ngDisabled = 'true';
       					boton.classList.remove('md-warn');
       					$rootScope.tools.alerta(res.data.title, res.data.message);
-              }else if(res.status >= 400 & res.status < 500){
+              }, function(res){
+
+              })
+              if(res.status >= 400 & res.status < 500){
                 ctrl.btnPassChange = "REENVIAR";
       					boton.classList.add('md-warn');
       					$rootScope.tools.alerta(res.data.title,'No se pudo actualizar.', vm.app.passChange);
@@ -129,17 +166,6 @@ class main{
       					boton.classList.add('md-warn');
       					$rootScope.tools.alerta(res.data.title, 'Error en el servidor.', vm.app.passChange);
               }
-      				/*if(res.data.validation){
-      					ctrl.btnPassChange = "ENVIADO";
-      					boton.ngDisabled = 'true';
-      					boton.classList.remove('md-warn');
-      					$rootScope.tools.alerta(res.data.title, res.data.message);
-      				}else{
-      					ctrl.btnPassChange = "REENVIAR";
-      					boton.classList.add('md-warn');
-      					$rootScope.tools.alerta(res.data.title, res.data.message, vm.app.passChange);
-      				}*/
-      			});
       		};
 
       		ctrl.cancel = function(){

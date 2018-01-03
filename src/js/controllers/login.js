@@ -1,10 +1,10 @@
-
+import '../../img/home-icono.svg';
 export default (ngModule) => {
   ngModule
-    .controller('login', ['$rootScope', '$scope', '$location', 'usuariosService', login])
+    .controller('login', ['$rootScope', '$scope', '$location', 'usuariosService', '$mdDialog', login])
 }
 
-function login($rootScope, $scope, $location, usuariosService){ //, usuariosService
+function login($rootScope, $scope, $location, usuariosService, $mdDialog){ //, usuariosService
 
       $rootScope.cz = {};
       $rootScope.cz.base64Decode = base64Decode;
@@ -64,6 +64,37 @@ function login($rootScope, $scope, $location, usuariosService){ //, usuariosServ
           })
 
       };
+
+      vm.passRecovery = function(ev){
+			$mdDialog.show({
+			      controller: function(){
+			      	var sc = this;
+			      	sc.datos = {};
+			      	sc.btnGuardar = "ENVIAR";
+			      	sc.enviar = function(){
+			      		var enviar = document.getElementById('btnSegConsulta');
+			      		sc.btnGuardar = "ENVIANDO...";
+			      		usuariosService.passRecovery(sc.datos)
+                  .then(function(res){
+                    $rootScope.cz.alerta("Recuperación de Contraseña", res.data.message);
+                  }, function(res){
+                    $rootScope.cz.alerta("Recuperación de Contraseña", res.data.message);
+                  })
+			      	};
+			      	sc.cancel = function(){
+								var boton = document.getElementById('btnSegConsulta');
+								boton.ngDisabled = 'false';
+								$mdDialog.cancel();
+					};
+			      },
+			      controllerAs: 'sc',
+			      template: require('../../views/templates/olvide_password.html'),
+			      parent: angular.element(document.body),
+			      targetEvent: ev,
+			      clickOutsideToClose:true,
+			      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+			    });
+		}
 
       function tokenCheck(){
         return new Promise(function(resolve, reject){
