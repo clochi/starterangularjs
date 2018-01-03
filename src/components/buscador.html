@@ -1,0 +1,27 @@
+<style>
+  .contenedor-search{
+    margin: 0;
+  }
+  .mf-search-badge{
+    padding-left: 0;
+    position: absolute;
+    margin-top: 40px;
+    font-size: 0.8em;
+  }
+  .mf-search-badge li{
+    display: inline;
+    list-style: none;
+    margin-right: 2px;
+    color: white;
+    background-color: rgb(33,150,243);
+    padding: 5px 10px;
+    border-radius: 12px;
+  }
+</style>
+<!--<ul class="mf-search-badge">
+  <li ng-repeat="item in $ctrl.categorias track by $index">{{item | beautify}}</li>
+</ul>-->
+<md-input-container class="md-block contenedor-search">
+  <label>Buscar</label>
+  <input type="text" ng-keyup="$ctrl.search($event)">
+</md-input-container>

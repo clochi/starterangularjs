@@ -19,7 +19,7 @@
   </div>
 </md-toolbar>
 
-<!-- exact table from live demo -->
+<mf-search data="usuario.usuarios" fields="['nombre', 'apellido', 'email', 'telefonoArea', 'telefonoNumero', 'direccion']"></mf-search>
 <md-table-container>
   <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
     <thead md-head md-order="query.order" md-on-reorder="getDesserts">
