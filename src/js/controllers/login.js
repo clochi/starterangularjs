@@ -76,9 +76,9 @@ function login($rootScope, $scope, $location, usuariosService, $mdDialog){ //, u
 			      		sc.btnGuardar = "ENVIANDO...";
 			      		usuariosService.passRecovery(sc.datos)
                   .then(function(res){
-                    $rootScope.cz.alerta("Recuperación de Contraseña", res.data.message);
+                    $rootScope.tools.alerta("Recuperación de Contraseña", res.data.message);
                   }, function(res){
-                    $rootScope.cz.alerta("Recuperación de Contraseña", res.data.message);
+                    $rootScope.tools.alerta("Recuperación de Contraseña", res.data.message);
                   })
 			      	};
 			      	sc.cancel = function(){
