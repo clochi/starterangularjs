@@ -79,12 +79,27 @@ function auth($rootScope, usuariosService, $location){
         					{
         						seccion: 'Inicio',
         						icono: 'home',
-        						link: '/home'
+        						link: '/home',
+                    childs: [],
+                    id: ''
         					},
                   {
-        						seccion: 'Pedidos',
-        						icono: 'restaurant_menu',
-        						link: '/pedidos'
+        						seccion: 'Configuración',
+        						icono: 'settings',
+        						link: $location.path().slice(1) + '#',
+                    childs: [
+                      {
+        								seccion: 'Asignar Profesores',
+        								icono: 'assignment_ind',
+        								link: '/asignar-evento'
+        							},
+                      {
+        								seccion: 'Salónes',
+        								icono: 'domain',
+        								link: '/salones'
+        							}
+                    ],
+                    id: 'keyboard_arrow_down'
         					},
                   {
                     seccion: 'Revendedores',

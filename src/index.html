@@ -70,13 +70,22 @@
 			<div class="menu-logo">
 				<h3>Ingresar logo aquí</h3><!--<img ng-src="img/logo-montego.png" alt="">-->
 			</div>
-			<md-list ng-repeat="item in cg.listaMenu" class="menu-item-cont">
+			<md-list ng-repeat="item in cg.listaMenu" class="menu-item-cont" data-id="{{item.seccion}}" ng-click="cg.desplegarSubMenu($event, item)">
 				<a ng-if="item.seccion" href="#{{item.link}}">
 					<md-list-item ng-class="{listItemActive: cg.app.navActive(item.link)}">
 						<i class="material-icons">{{item.icono}}</i>
 						<span>{{item.seccion}} </span>
+						<i class="material-icons flecha-menu" ng-if="item.id != ''">{{item.id}}</i>
 					</md-list-item>
 				</a>
+				<md-list ng-if="item.childs.length > 0" ng-repeat="child in item.childs" ng-click="$event.stopPropagation()" class="menu-item-cont submenu">
+		        <a href="#{{child.link}}"><!--<a href="#/app{{item.link}}">-->
+		          <md-list-item ng-class="{listItemActive: cg.navActive(child.link)}">
+		            <i class="material-icons">{{child.icono}}</i>
+		            <span>{{child.seccion}} </span>
+		          </md-list-item>
+		        </a>
+		      </md-list>
 			</md-list>
 		</md-sidenav>
 		<md-content flex id="content" ng-class="{paddingContent: cg.app.isLoginScreen()}">

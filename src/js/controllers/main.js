@@ -137,6 +137,42 @@ class main{
 
       //FIN FUNCIONES GENERALES DE LA APP
       var vm = this;
+
+      var menuDesplegado = false;
+  		vm.submenuStates = {};
+  		vm.desplegarSubMenu = function(e, item){
+  			if (item.childs.length > 0){
+  				var activo;
+  				if(activo = document.querySelector('.sub-menu-activo')){
+  					var flech = activo.querySelector('.flecha-menu');
+  					$(activo).find('.submenu').stop().slideToggle();
+  					flech.classList.remove('flecha-up');
+  					vm.submenuStates[activo.dataset.id] = false;
+  					activo.classList.remove('sub-menu-activo');
+  					if(activo.dataset.id == e.currentTarget.dataset.id) return false;
+  					//vm.desplegarSubMenu(e, item);
+  				}
+  				var flechita = e.currentTarget.querySelector('.flecha-menu');
+  				e.currentTarget.classList.add('sub-menu-activo');
+  				$(e.currentTarget).find('.submenu').stop().slideToggle();
+  				$rootScope.subMenuActive = true;
+  				if(vm.submenuStates[e.currentTarget.dataset.id] != undefined){
+
+  					if(vm.submenuStates[e.currentTarget.dataset.id]){
+  						flechita.classList.remove('flecha-up')
+  						vm.submenuStates[e.currentTarget.dataset.id] = false
+  					}else{
+  						flechita.classList.add('flecha-up')
+  						vm.submenuStates[e.currentTarget.dataset.id] = true;
+  					}
+  				}else{
+  					flechita.classList.add('flecha-up')
+  					vm.submenuStates[e.currentTarget.dataset.id] = true;
+  				}
+  				e.preventDefault();
+  			}
+  		}
+
       $rootScope.$on('updateSidenav', function(e, menu){
         vm.listaMenu = menu;
       });
