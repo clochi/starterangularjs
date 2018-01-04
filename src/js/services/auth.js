@@ -74,33 +74,34 @@ function auth($rootScope, usuariosService, $location){
               };
             }
             var listaMenu = [];
-            if(res.idCategoria === 1){
-              listaMenu = [
-        					{
-        						seccion: 'Inicio',
-        						icono: 'home',
-        						link: '/home',
+            switch (res.idCategoria){
+              case 1:
+                listaMenu = [
+                  {
+                    seccion: 'Inicio',
+                    icono: 'home',
+                    link: '/home',
                     childs: [],
                     id: ''
-        					},
+                  },
                   {
-        						seccion: 'Configuración',
-        						icono: 'settings',
-        						link: $location.path().slice(1) + '#',
+                    seccion: 'Configuración',
+                    icono: 'settings',
+                    link: $location.path().slice(1) + '#',
                     childs: [
                       {
-        								seccion: 'Asignar Profesores',
-        								icono: 'assignment_ind',
-        								link: '/asignar-evento'
-        							},
+                        seccion: 'Asignar Profesores',
+                        icono: 'assignment_ind',
+                        link: '/asignar-evento'
+                      },
                       {
-        								seccion: 'Salónes',
-        								icono: 'domain',
-        								link: '/salones'
-        							}
+                        seccion: 'Salónes',
+                        icono: 'domain',
+                        link: '/salones'
+                      }
                     ],
                     id: 'keyboard_arrow_down'
-        					},
+                  },
                   {
                     seccion: 'Revendedores',
                     icono: 'people',
@@ -129,26 +130,30 @@ function auth($rootScope, usuariosService, $location){
                     icono: 'insert_chart',
                     link: '/estadistica'
                   }*/
-        				];
-            }else{
-              listaMenu = [
-        					{
-        						seccion: 'Inicio',
-        						icono: 'home',
-        						link: '/clientes/home'
-        					},
-        					{
-        						seccion: 'Pedidos',
-        						icono: 'restaurant_menu',
-        						link: '/clientes/pedidos'
-        					},
-                  {
-                    seccion: 'Productos',
-                    icono: 'add_shopping_cart',
-                    link: '/clientes/productos'
-                  }
-        				];
+                ]
+                break;
+
+              case 2:
+                listaMenu = [
+                    {
+                      seccion: 'Inicio',
+                      icono: 'home',
+                      link: '/clientes/home'
+                    },
+                    {
+                      seccion: 'Pedidos',
+                      icono: 'restaurant_menu',
+                      link: '/clientes/pedidos'
+                    },
+                    {
+                      seccion: 'Productos',
+                      icono: 'add_shopping_cart',
+                      link: '/clientes/productos'
+                    }
+                  ]
+                break;
             }
+            
             $rootScope.$emit('updateSidenav', listaMenu);
             //spinner.fadeOut(300);
             var isRouteRight = listaMenu.find(function(item){

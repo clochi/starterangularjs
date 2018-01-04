@@ -3,7 +3,9 @@ export default ngModule => {
     .factory('HOST', HOST);
 
   function HOST(){
-    let url = 'http://www.fibraconsultores.com:8010/api/';
+    //  Agregar en la variable url el endpoint del Api ejemplo
+    //  let url = 'http://www.midominio.com:8000/api/';
+    let url = '';
     let HOST = {
       url: function(){
         return url;
