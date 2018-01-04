@@ -90,32 +90,32 @@ function auth($rootScope, usuariosService, $location){
                     link: $location.path().slice(1) + '#',
                     childs: [
                       {
-                        seccion: 'Asignar Profesores',
+                        seccion: 'Opción 1',
                         icono: 'assignment_ind',
-                        link: '/asignar-evento'
+                        link: '/ruta'
                       },
                       {
-                        seccion: 'Salónes',
+                        seccion: 'Opción 2',
                         icono: 'domain',
-                        link: '/salones'
+                        link: '/opcion2'
                       }
                     ],
                     id: 'keyboard_arrow_down'
                   },
                   {
-                    seccion: 'Revendedores',
+                    seccion: 'Item',
                     icono: 'people',
-                    link: '/revendedores'
+                    link: '/items'
                   },
                   {
-                    seccion: 'Productos',
+                    seccion: 'Item 2',
                     icono: 'add_shopping_cart',
-                    link: '/productos'
+                    link: '/items2'
                   },
                   {
-                    seccion: 'Delivery',
+                    seccion: 'Item 3',
                     icono: 'motorcycle',
-                    link: '/delivery'
+                    link: '/item3'
                   },
                   /*{
                     seccion: 'Emitir Pago',
@@ -153,7 +153,7 @@ function auth($rootScope, usuariosService, $location){
                   ]
                 break;
             }
-            
+
             $rootScope.$emit('updateSidenav', listaMenu);
             //spinner.fadeOut(300);
             var isRouteRight = listaMenu.find(function(item){
