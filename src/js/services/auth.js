@@ -154,10 +154,20 @@ function auth($rootScope, usuariosService, $location){
                 break;
             }
 
-            $rootScope.$emit('updateSidenav', listaMenu);
+            if(!$rootScope.init){
+                $rootScope.$emit('updateSidenav', listaMenu);
+                $rootScope.init = true;
+              }
+
             //spinner.fadeOut(300);
             var isRouteRight = listaMenu.find(function(item){
-              return $location.path() == item.link;
+              if($location.path() == item.link){
+                return true;
+              }else{
+              return item.childs.find(function(child){
+                  return $location.path() == child.link;
+                })
+              }
             });
             if(isRouteRight == undefined){
               url.path(listaMenu[0].link);

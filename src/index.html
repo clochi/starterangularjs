@@ -80,7 +80,7 @@
 				</a>
 				<md-list ng-if="item.childs.length > 0" ng-repeat="child in item.childs" ng-click="$event.stopPropagation()" class="menu-item-cont submenu">
 		        <a href="#{{child.link}}"><!--<a href="#/app{{item.link}}">-->
-		          <md-list-item ng-class="{listItemActive: cg.navActive(child.link)}">
+		          <md-list-item ng-class="{listItemActive: cg.app.navActive(child.link)}">
 		            <i class="material-icons">{{child.icono}}</i>
 		            <span>{{child.seccion}} </span>
 		          </md-list-item>

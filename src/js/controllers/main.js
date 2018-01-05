@@ -137,7 +137,7 @@ class main{
 
       //FIN FUNCIONES GENERALES DE LA APP
       var vm = this;
-
+      $rootScope.init = false; // Este es para que en auth.js se salté el updateSidenav si ya inició
       var menuDesplegado = false;
   		vm.submenuStates = {};
   		vm.desplegarSubMenu = function(e, item){
@@ -149,7 +149,10 @@ class main{
   					flech.classList.remove('flecha-up');
   					vm.submenuStates[activo.dataset.id] = false;
   					activo.classList.remove('sub-menu-activo');
-  					if(activo.dataset.id == e.currentTarget.dataset.id) return false;
+  					if(activo.dataset.id == e.currentTarget.dataset.id){
+              e.preventDefault();
+              return false;
+            }
   					//vm.desplegarSubMenu(e, item);
   				}
   				var flechita = e.currentTarget.querySelector('.flecha-menu');
