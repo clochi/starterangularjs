@@ -15,7 +15,7 @@ require('../css/estilo.styl');
 angular.module('webpackStarter', ['ngRoute', 'ngMaterial', 'md.data.table']);
 
 const ngModule = angular.module('webpackStarter')
-require('./config/routes').default(ngModule);
+require('./config').default(ngModule);
 require('./services').default(ngModule);
 require('./controllers').default(ngModule);
 require('../components').default(ngModule);
