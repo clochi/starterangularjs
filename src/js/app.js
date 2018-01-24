@@ -18,4 +18,6 @@ const ngModule = angular.module('webpackStarter')
 require('./config').default(ngModule);
 require('./services').default(ngModule);
 require('./controllers').default(ngModule);
+require('./directives').default(ngModule);
+require('./factorys').default(ngModule);
 require('../components').default(ngModule);
