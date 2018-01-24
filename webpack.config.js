@@ -67,7 +67,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(jpg|png|gif|woff|eot|ttf)$/,
+        test: /\.(woff|eot|ttf)$/,
         use: {
           loader: 'url-loader',
           options: {
@@ -87,9 +87,8 @@ module.exports = {
       {
         test: /\.(mp4|avi)$/,
         use: {
-          loader: 'url-loader',
+          loader: 'file-loader',
           options: {
-            limit: 1000000,
             name: 'videos/[name].[hash].[ext]'
           }
         }
